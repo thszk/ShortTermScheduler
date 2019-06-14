@@ -14,7 +14,7 @@ public class Scheduler {
 
         try {
             System.setIn(new FileInputStream(new File("/home/xogaiht/Code/ShortTermScheduler/input.txt")));
-            System.setOut(new PrintStream(new FileOutputStream("/home/xogaiht/Code/ShortTermScheduler/output.txt", true)));
+            System.setOut(new PrintStream(new FileOutputStream("/home/xogaiht/Code/ShortTermScheduler/output.txt", false)));
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -31,28 +31,28 @@ public class Scheduler {
         FirstComeFirstServed fcfs = new FirstComeFirstServed();
         ShortedJobFirst sjf = new ShortedJobFirst();
 
-        System.out.print("qtClass: ");
+        System.out.print("qtClass: \n");
         qtClass = scanner.nextInt();
 
         for (int i = 1; i <= qtClass; i++) {
-            System.out.print("choose the " + i + "º scheduling algorithm- FCFS | SJF | SRJF | PS | RR: ");
+            System.out.print("choose the " + i + "º scheduling algorithm- FCFS | SJF | SRJF | PS | RR: \n");
             tpClass = scanner.next().toUpperCase();
 
             switch (tpClass) {
                 case "FCFS":
-                    System.out.println("FCFS");
-                    System.out.print("qtProcess: ");
+                    System.out.print("FCFS\n");
+                    System.out.print("qtProcess: \n");
                     qtProcess = scanner.nextInt();
                     for (int j = 1; j <= qtProcess; j++) {
-                        System.out.println(j + "º process");
+                        System.out.print(j + "º process\n");
                         process.setPID(pid);
                         pid++;
-                        System.out.print("CPU-burst: ");
+                        System.out.print("CPU-burst: \n");
                         gamb = scanner.nextInt();
                         totalTime += gamb;
                         process.setInitialCpuBurst(gamb);
                         process.setRemainingCpuBurst(gamb);
-                        System.out.print("arrival time: ");
+                        System.out.print("arrival time: \n");
                         gamb = scanner.nextInt();
                         process.setArrivalTime(gamb);
                         // whatever
@@ -63,19 +63,19 @@ public class Scheduler {
                     break;
 
                 case "SJF":
-                    System.out.println("SJF");
-                    System.out.print("qtProcess: ");
+                    System.out.print("SJF\n");
+                    System.out.print("qtProcess: \n");
                     qtProcess = scanner.nextInt();
                     for (int j = 1; j <= qtProcess; j++) {
-                        System.out.println(j + "º process");
+                        System.out.print(j + "º process\n");
                         process.setPID(pid);
                         pid++;
-                        System.out.print("CPU-burst: ");
+                        System.out.print("CPU-burst: \n");
                         gamb = scanner.nextInt();
                         totalTime += gamb;
                         process.setInitialCpuBurst(gamb);
                         process.setRemainingCpuBurst(gamb);
-                        System.out.print("arrival time: ");
+                        System.out.print("arrival time: \n");
                         gamb = scanner.nextInt();
                         process.setArrivalTime(gamb);
                         // whatever
@@ -98,14 +98,13 @@ public class Scheduler {
                     break;
             }
         }
-        System.out.println("\n-------------EXEC----------------");
 
-        // test
-//        System.out.println("fila fcfs:");
-//        for (int i = 0; i < fcfs.getNewProcess().size(); i++) {
-//            System.out.println("PID: "+fcfs.getNewProcess().get(i).getPID());
-//        }
-//        System.out.println("-----------------------------");
+        System.out.println("\n-------------newProcess-sjf-------------");
+        sjf.printNew();
+        System.out.println("\n-------------readyProcess-sjf-------------");
+        sjf.printReady();
+
+        System.out.println("\n-------------EXEC----------------");
 
         int time = 0;
         // while that will run schedule algorithms
@@ -114,7 +113,7 @@ public class Scheduler {
             fcfs.execute(time);
             sjf.execute(time);
             time++;
-            System.out.println(". . . . .");
+            System.out.println(". . . . . . . . . .");
         }
 
 

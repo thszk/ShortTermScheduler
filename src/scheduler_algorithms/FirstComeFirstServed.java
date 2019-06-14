@@ -35,13 +35,16 @@ public class FirstComeFirstServed {
                 } else {
                     if (i+1 == this.readyProcess.size()) {
                         this.readyProcess.addLast(p);
+                        return 0;
                     } else {
                         this.readyProcess.add(i+1,p);
+                        return 0;
                     }
                 }
             }
         } else {
             this.readyProcess.add(p); // is empty, only add on ready queue
+            return 0;
         }
         return 1;
     }
