@@ -1,15 +1,15 @@
 package scheduler_algorithms;
 
 import scheduler.Process;
-
 import java.util.LinkedList;
 
-public class FirstComeFirstServed {
+public class PriorityScheduling {
+
     private LinkedList<Process> newProcess = new LinkedList<>();
     private LinkedList<Process> readyProcess = new LinkedList<>();
     private LinkedList<Process> finishedProcess = new LinkedList<>();
 
-    public FirstComeFirstServed() {
+    public PriorityScheduling() {
     }
 
     public void addNewProcess(Process newP) {
@@ -19,34 +19,26 @@ public class FirstComeFirstServed {
     private int addReadyProcess(Process p) {
         if (!this.readyProcess.isEmpty()) { // readyProcess not empty
             for (int i = 0; i < this.readyProcess.size(); i++) {
-                if (p.getArrivalTime() < this.readyProcess.get(i).getArrivalTime()) { // arrive time <
-                    this.readyProcess.add(i,p);
-                    return 0;
-                } else if (p.getArrivalTime() == this.readyProcess.get(i).getArrivalTime()){ // arrive time =
+                if (p.getPriority() < this.readyProcess.get(i).getPriority() && !this.readyProcess.get(i).isStarted()) { // priority <
+                    this.readyProcess.add(i,p);return 0;
+                } else if (p.getPriority() == this.readyProcess.get(i).getPriority()) { // priority =
                     if (p.getRemainingCpuBurst() < this.readyProcess.get(i).getRemainingCpuBurst()) { // cpu burst <
-                        this.readyProcess.add(i,p);
-                        return 0;
+                        this.readyProcess.add(i,p);return 0;
                     } else if (p.getRemainingCpuBurst() == this.readyProcess.get(i).getRemainingCpuBurst()){ // cpu burst =
-                        if (p.getPID() < this.readyProcess.get(i).getPID()) {
-                            this.readyProcess.add(i,p);
-                            return 0;
+                        if (p.getArrivalTime() < this.readyProcess.get(i).getArrivalTime()) { // arrival time <
+                            this.readyProcess.add(i,p);return 0;
+                        } else if (p.getArrivalTime() == this.readyProcess.get(i).getArrivalTime()){ // arrival time =
+                            if (p.getPID() < this.readyProcess.get(i).getPID()) { // pid <
+                                this.readyProcess.add(i,p);return 0;
+                            }
                         }
-                    }
-                } else {
-                    if (i+1 == this.readyProcess.size()) {
-                        this.readyProcess.addLast(p);
-                        return 0;
-                    } else {
-                        this.readyProcess.add(i+1,p);
-                        return 0;
                     }
                 }
             }
-        } else {
-            this.readyProcess.add(p); // is empty, only add on ready queue
-            return 0;
         }
-        return 1;
+        // is empty, only add on ready queue
+        // if all previous cases don't return, p will be inserted in the last index
+        this.readyProcess.addLast(p);return 0;
     }
 
     public void execute(int time) {
@@ -67,7 +59,8 @@ public class FirstComeFirstServed {
         // have ready process
         if (!this.readyProcess.isEmpty()) {
             if (this.readyProcess.getFirst().getArrivalTime() <= time) {
-                System.out.println("PID: " + this.readyProcess.getFirst().getPID() + " FCFS");
+                this.readyProcess.getFirst().setStarted(true);
+                System.out.println("PID: " + this.readyProcess.getFirst().getPID() + " PS");
                 System.out.println("initialBurst: " + this.readyProcess.getFirst().getInitialCpuBurst());
                 this.readyProcess.getFirst().setRemainingCpuBurst(this.readyProcess.getFirst().getRemainingCpuBurst() - 1);
                 System.out.println("remainingBurst: " + this.readyProcess.getFirst().getRemainingCpuBurst());
@@ -80,6 +73,24 @@ public class FirstComeFirstServed {
                 Process newP = this.readyProcess.removeFirst();
                 this.finishedProcess.addLast(newP);
             }
+        }
+    }
+
+    public void printNew() {
+        for (int i = 0; i < this.newProcess.size(); i++) {
+            System.out.println("PID: " + this.newProcess.get(i).getPID());
+            System.out.println("Initial Burst: " + this.newProcess.get(i).getInitialCpuBurst());
+            System.out.println("Remaining Burst: " + this.newProcess.get(i).getRemainingCpuBurst());
+        }
+    }
+
+    public void printReady() {
+        for (int i = 0; i < this.readyProcess.size(); i++) {
+            System.out.println("PID: " + this.readyProcess.get(i).getPID());
+            System.out.println("Initial Burst: " + this.readyProcess.get(i).getInitialCpuBurst());
+            System.out.println("Remaining Burst: " + this.readyProcess.get(i).getRemainingCpuBurst());
+            System.out.println("Arrival Time: " + this.readyProcess.get(i).getArrivalTime());
+            System.out.println("Priority: " + this.readyProcess.get(i).getPriority());
         }
     }
 }

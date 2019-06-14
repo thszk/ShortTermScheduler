@@ -1,6 +1,8 @@
 package scheduler;
 
 import scheduler_algorithms.FirstComeFirstServed;
+import scheduler_algorithms.PriorityScheduling;
+import scheduler_algorithms.PriorityWithPreemptionScheduling;
 import scheduler_algorithms.ShortedJobFirst;
 
 import java.io.File;
@@ -12,6 +14,7 @@ import java.util.Scanner;
 public class Scheduler {
     public static void main(String[] args) {
 
+        // set I/O default
         try {
             System.setIn(new FileInputStream(new File("/home/xogaiht/Code/ShortTermScheduler/input.txt")));
             System.setOut(new PrintStream(new FileOutputStream("/home/xogaiht/Code/ShortTermScheduler/output.txt", false)));
@@ -30,12 +33,14 @@ public class Scheduler {
         Process process = new Process();
         FirstComeFirstServed fcfs = new FirstComeFirstServed();
         ShortedJobFirst sjf = new ShortedJobFirst();
+        PriorityScheduling ps = new PriorityScheduling();
+        PriorityWithPreemptionScheduling pwps = new PriorityWithPreemptionScheduling();
 
         System.out.print("qtClass: \n");
         qtClass = scanner.nextInt();
 
         for (int i = 1; i <= qtClass; i++) {
-            System.out.print("choose the " + i + "º scheduling algorithm- FCFS | SJF | SRJF | PS | RR: \n");
+            System.out.print("choose the " + i + "º scheduling algorithm- FCFS | SJF | SRJF | PS | PWPS | RR: \n");
             tpClass = scanner.next().toUpperCase();
 
             switch (tpClass) {
@@ -86,23 +91,66 @@ public class Scheduler {
                     break;
 
                 case "SRJF":
-                    System.out.println("SRJF");
+                    System.out.print("SRJF");
                     break;
 
                 case "PS":
-                    System.out.println("PS");
+                    System.out.print("PS\n");
+                    System.out.print("qtProcess: \n");
+                    qtProcess = scanner.nextInt();
+                    for (int j = 1; j <= qtProcess; j++) {
+                        System.out.print(j + "º process\n");
+                        process.setPID(pid);
+                        pid++;
+                        System.out.print("CPU-burst: \n");
+                        gamb = scanner.nextInt();
+                        totalTime += gamb;
+                        process.setInitialCpuBurst(gamb);
+                        process.setRemainingCpuBurst(gamb);
+                        System.out.print("arrival time: \n");
+                        gamb = scanner.nextInt();
+                        process.setArrivalTime(gamb);
+                        System.out.print("priority: \n");
+                        gamb = scanner.nextInt();
+                        process.setPriority(gamb);
+                        // whatever
+                        process.setInitialQuantum(0);process.setRemainingQuantum(0);
+                        ps.addNewProcess(process);
+                        process = new Process(); // clear
+                    }
+                    break;
+
+                case "PWPS":
+                    System.out.print("PWPS\n");
+                    System.out.print("qtProcess: \n");
+                    qtProcess = scanner.nextInt();
+                    for (int j = 1; j <= qtProcess; j++) {
+                        System.out.print(j + "º process\n");
+                        process.setPID(pid);
+                        pid++;
+                        System.out.print("CPU-burst: \n");
+                        gamb = scanner.nextInt();
+                        totalTime += gamb;
+                        process.setInitialCpuBurst(gamb);
+                        process.setRemainingCpuBurst(gamb);
+                        System.out.print("arrival time: \n");
+                        gamb = scanner.nextInt();
+                        process.setArrivalTime(gamb);
+                        System.out.print("priority: \n");
+                        gamb = scanner.nextInt();
+                        process.setPriority(gamb);
+                        // whatever
+                        process.setInitialQuantum(0);process.setRemainingQuantum(0);
+                        pwps.addNewProcess(process);
+                        process = new Process(); // clear
+                    }
                     break;
 
                 case "RR":
-                    System.out.println("RR");
+                    System.out.print("RR");
                     break;
             }
         }
-
-        System.out.println("\n-------------newProcess-sjf-------------");
-        sjf.printNew();
-        System.out.println("\n-------------readyProcess-sjf-------------");
-        sjf.printReady();
 
         System.out.println("\n-------------EXEC----------------");
 
@@ -110,8 +158,20 @@ public class Scheduler {
         // while that will run schedule algorithms
         while(time <= totalTime) {
             System.out.println("time = " + time);
+
+//            System.out.println("\n-------------readyProcess-ps-before-------------");
+//            ps.printReady();
+//            System.out.println("\n");
+
             fcfs.execute(time);
             sjf.execute(time);
+            ps.execute(time);
+            pwps.execute(time);
+
+//            System.out.println("\n-------------readyProcess-ps-after-------------");
+//            ps.printReady();
+//            System.out.println("\n");
+
             time++;
             System.out.println(". . . . . . . . . .");
         }

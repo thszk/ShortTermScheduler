@@ -8,8 +8,10 @@ public class Process {
   private int priority;
   private int initialQuantum;
   private int remainingQuantum;
+  private boolean started;
 
   public Process() {
+    this.started = false; // all process are created with start = false by default
   }
 
   public int getPID() {
@@ -68,4 +70,11 @@ public class Process {
     this.remainingQuantum = remainingQuantum;
   }
 
+  public boolean isStarted() {
+    return started;
+  }
+
+  public void setStarted(boolean started) {
+    this.started = started;
+  }
 }
