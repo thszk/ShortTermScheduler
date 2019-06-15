@@ -113,6 +113,7 @@ public class Class {
         if (!this.readyProcess.isEmpty()) {
             if (this.readyProcess.getFirst().getRemainingCpuBurst() == 0) {
                 Process newP = this.readyProcess.removeFirst();
+                newP.setDepartureTime(time);
                 this.finishedProcess.addLast(newP);
             }
         }
@@ -184,6 +185,7 @@ public class Class {
         if (!this.readyProcess.isEmpty()) {
             if (this.readyProcess.getFirst().getRemainingCpuBurst() == 0) {
                 Process newP = this.readyProcess.removeFirst();
+                newP.setDepartureTime(time);
                 this.finishedProcess.addLast(newP);
             }
         }
@@ -242,8 +244,9 @@ public class Class {
 
         if(!this.readyProcess.isEmpty()){
             if(this.readyProcess.getFirst().getRemainingCpuBurst() == 0){
-                Process pronto = this.readyProcess.removeFirst();
-                this.finishedProcess.addLast(pronto);
+                Process newP = this.readyProcess.removeFirst();
+                newP.setDepartureTime(time);
+                this.finishedProcess.addLast(newP);
             }
         }
         return ret;
@@ -307,6 +310,7 @@ public class Class {
         if (!this.readyProcess.isEmpty()) {
             if (this.readyProcess.getFirst().getRemainingCpuBurst() == 0) {
                 Process newP = this.readyProcess.removeFirst();
+                newP.setDepartureTime(time);
                 this.finishedProcess.addLast(newP);
             }
         }
@@ -379,6 +383,7 @@ public class Class {
         if (!this.readyProcess.isEmpty()) {
             if (this.readyProcess.getFirst().getRemainingCpuBurst() == 0) {
                 Process newP = this.readyProcess.removeFirst();
+                newP.setDepartureTime(time);
                 this.finishedProcess.addLast(newP);
             }
         }
@@ -439,7 +444,7 @@ public class Class {
                 exec.setRemainingCpuBurst(exec.getRemainingCpuBurst() - 1);
                 System.out.println("remainingBurst: " + exec.getRemainingCpuBurst());
                 System.out.println("arriveTime: " + exec.getArrivalTime());
-                exec.setRemainingQuantum(exec.getRemainingQuantum() - 1);//setando o Quantum
+                exec.setRemainingQuantum(exec.getRemainingQuantum() - 1); //setando o Quantum
                 System.out.println("remainingQuantum: " + exec.getRemainingQuantum());
                 addReadyProcessRR(exec);
                 ret = true;
@@ -447,11 +452,23 @@ public class Class {
         }
         // already finished some process
         if (!this.readyProcess.isEmpty()) {
-            if (this.readyProcess.getFirst().getRemainingCpuBurst() == 0) {
+            if (this.readyProcess.getFirst().getRemainingCpuBurst() < 1) {
                 Process newP = this.readyProcess.removeFirst();
+                newP.setDepartureTime(time);
                 this.finishedProcess.addLast(newP);
             }
         }
         return ret;
+    }
+
+    public void printFinished() {
+        for (int i = 0; i < this.finishedProcess.size(); i++) {
+            System.out.println(
+                this.finishedProcess.get(i).getPID() + "\t\t" +
+                this.tpClass + "\t\t" +
+                ((this.finishedProcess.get(i).getDepartureTime()+this.finishedProcess.get(i).getArrivalTime())-this.finishedProcess.get(i).getInitialCpuBurst()) + "\t\t\t" +
+                (this.finishedProcess.get(i).getDepartureTime()-this.finishedProcess.get(i).getArrivalTime())
+            );
+        }
     }
 }

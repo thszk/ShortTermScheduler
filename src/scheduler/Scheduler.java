@@ -56,7 +56,7 @@ public class Scheduler {
                         gamb = scanner.nextInt();
                         process.setArrivalTime(gamb);
                         // whatever
-                        process.setPriority(0);process.setInitialQuantum(0);process.setRemainingQuantum(0);
+                        process.setPriority(0);process.setInitialQuantum(0);process.setRemainingQuantum(0);process.setDepartureTime(0);
                         // principal queue settings
                         classP.setTpClass("FCFS");
                         classP.addNewProcess(process);
@@ -81,7 +81,7 @@ public class Scheduler {
                         gamb = scanner.nextInt();
                         process.setArrivalTime(gamb);
                         // whatever
-                        process.setPriority(0);process.setInitialQuantum(0);process.setRemainingQuantum(0);
+                        process.setPriority(0);process.setInitialQuantum(0);process.setRemainingQuantum(0);process.setDepartureTime(0);
                         // principal queue settings
                         classP.setTpClass("SJF");
                         classP.addNewProcess(process);
@@ -106,7 +106,7 @@ public class Scheduler {
                         gamb = scanner.nextInt();
                         process.setArrivalTime(gamb);
                         // whatever
-                        process.setPriority(0);process.setInitialQuantum(0);process.setRemainingQuantum(0);
+                        process.setPriority(0);process.setInitialQuantum(0);process.setRemainingQuantum(0);process.setDepartureTime(0);
                         // principal queue settings
                         classP.setTpClass("SRTF");
                         classP.addNewProcess(process);
@@ -134,7 +134,7 @@ public class Scheduler {
                         gamb = scanner.nextInt();
                         process.setPriority(gamb);
                         // whatever
-                        process.setInitialQuantum(0);process.setRemainingQuantum(0);
+                        process.setInitialQuantum(0);process.setRemainingQuantum(0);process.setDepartureTime(0);
                         // principal queue settings
                         classP.setTpClass("PS");
                         classP.addNewProcess(process);
@@ -162,7 +162,7 @@ public class Scheduler {
                         gamb = scanner.nextInt();
                         process.setPriority(gamb);
                         // whatever
-                        process.setInitialQuantum(0);process.setRemainingQuantum(0);
+                        process.setInitialQuantum(0);process.setRemainingQuantum(0);process.setDepartureTime(0);
                         // principal queue settings
                         classP.setTpClass("PWPS");
                         classP.addNewProcess(process);
@@ -191,7 +191,7 @@ public class Scheduler {
                         process.setInitialQuantum(gamb);
                         process.setRemainingQuantum(gamb);
                         // whatever
-                        process.setPriority(0);
+                        process.setPriority(0);process.setDepartureTime(0);
                         // principal queue settings
                         classP.setTpClass("RR");
                         classP.addNewProcess(process);
@@ -206,21 +206,29 @@ public class Scheduler {
         System.out.println("\n-------------EXEC----------------");
 
         int time = 0;
-        Boolean pivot;
+        Boolean can;
 
         // while that will run schedule algorithms
-        while(time <= totalTime) {
+        while(time <= 100) {
             System.out.println("time = " + time);
-            pivot = true;
+            can = true;
 
             for (int i = 0; i < mqs.size(); i++) {
-                if (mqs.get(i).execute(time, pivot)) {
-                    pivot = false;
+                if (mqs.get(i).execute(time, can)) {
+                    can = false;
                 }
+//                System.out.println("DEBUG :  " + i + " " + mqs.get(i).getReadyProcess());
             }
 
             time++;
             System.out.println(". . . . . . . . . .");
+        }
+
+        // print final information
+        System.out.println("\n-------------RESULTS----------------");
+        System.out.println("Process\tClass\tWaiting\t\tProcessing");
+        for (int i = 0; i < mqs.size(); i++) {
+            mqs.get(i).printFinished();
         }
     }
 }

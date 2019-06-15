@@ -9,6 +9,7 @@ public class Process {
   private int initialQuantum;
   private int remainingQuantum;
   private boolean started;
+  private int departureTime;
 
   public Process() {
     this.started = false; // all process are created with start = false by default
@@ -76,5 +77,13 @@ public class Process {
 
   public void setStarted(boolean started) {
     this.started = started;
+  }
+
+  public int getDepartureTime() {
+    return departureTime;
+  }
+
+  public void setDepartureTime(int departureTime) {
+    this.departureTime = departureTime;
   }
 }
