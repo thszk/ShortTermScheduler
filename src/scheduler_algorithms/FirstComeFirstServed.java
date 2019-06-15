@@ -16,6 +16,10 @@ public class FirstComeFirstServed {
         this.newProcess.addLast(newP);
     }
 
+    public boolean hasReady() {
+        return this.readyProcess.isEmpty();
+    }
+
     private int addReadyProcess(Process p) {
         if (!this.readyProcess.isEmpty()) { // readyProcess not empty
             for (int i = 0; i < this.readyProcess.size(); i++) {

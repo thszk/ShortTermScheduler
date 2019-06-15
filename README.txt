@@ -1,9 +1,9 @@
-para inserir dados no arquivo input.txt essas orientações devem ser seguidas.
+para inserir dados no arquivo input.txt essas orientações devem ser seguidas:
 
 o posicionamento dos valores seguem o padrão:
 
 QUANTIDADE DE CLASSES:
-TIPO DO ESCALONADOR DA 1ª CLASSE: (FCFS | SJF | SRJF | PS | RR)
+TIPO DO ESCALONADOR DA 1ª CLASSE: (FCFS | SJF | SRTF | PS | RR) - seguindo sua ordem de prioridade
 QUANTIDADE DE PROCESSOS NA 1ª CLASSE:
 CPU-BURST DO 1º PROCESSO DA CLASSE:
 TEMPO DE CHEGADA DO 1º PROCESSO DA CLASSE:

@@ -16,6 +16,10 @@ public class PriorityScheduling {
         this.newProcess.addLast(newP);
     }
 
+    public boolean hasReady() {
+        return this.readyProcess.isEmpty();
+    }
+
     private int addReadyProcess(Process p) {
         if (!this.readyProcess.isEmpty()) { // readyProcess not empty
             for (int i = 0; i < this.readyProcess.size(); i++) {
@@ -73,24 +77,6 @@ public class PriorityScheduling {
                 Process newP = this.readyProcess.removeFirst();
                 this.finishedProcess.addLast(newP);
             }
-        }
-    }
-
-    public void printNew() {
-        for (int i = 0; i < this.newProcess.size(); i++) {
-            System.out.println("PID: " + this.newProcess.get(i).getPID());
-            System.out.println("Initial Burst: " + this.newProcess.get(i).getInitialCpuBurst());
-            System.out.println("Remaining Burst: " + this.newProcess.get(i).getRemainingCpuBurst());
-        }
-    }
-
-    public void printReady() {
-        for (int i = 0; i < this.readyProcess.size(); i++) {
-            System.out.println("PID: " + this.readyProcess.get(i).getPID());
-            System.out.println("Initial Burst: " + this.readyProcess.get(i).getInitialCpuBurst());
-            System.out.println("Remaining Burst: " + this.readyProcess.get(i).getRemainingCpuBurst());
-            System.out.println("Arrival Time: " + this.readyProcess.get(i).getArrivalTime());
-            System.out.println("Priority: " + this.readyProcess.get(i).getPriority());
         }
     }
 }
