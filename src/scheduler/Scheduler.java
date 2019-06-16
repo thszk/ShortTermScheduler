@@ -224,7 +224,7 @@ public class Scheduler {
 
         // print the final information
         System.out.println("\n-------------RESULTS----------------");
-        System.out.println("Process\tClass\tWaiting\t\tProcessing");
+        System.out.println("Process\tClass\tWaiting\tProcessing");
         for (int i = 0; i < qtClass; i++) {
             mqs.get(i).printFinished();
         }

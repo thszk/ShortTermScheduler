@@ -124,15 +124,15 @@ remainingQuantum: 0
 . . . . . . . . . .
 
 -------------RESULTS----------------
-Process	Class	Waiting		Processing
-	1	PWPS		0			2
-	2	PWPS		1			2
-	3	PWPS		0			1
+Process	Class	Waiting	Processing
+1		PWPS		0		2
+2		PWPS		1		2
+3		PWPS		0		1
 ------------------------------------
-	4	RR		5			7
-	5	RR		5			7
-	6	RR		0			2
+4		RR		5		7
+5		RR		5		7
+6		RR		0		2
 ------------------------------------
-	7	FCFS		8			12
-	8	FCFS		11			15
+7		FCFS		8		12
+8		FCFS		11		15
 ------------------------------------

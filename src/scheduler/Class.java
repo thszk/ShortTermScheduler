@@ -458,10 +458,9 @@ public class Class {
     public void printFinished() {
         for (int i = 0; i < this.finishedProcess.size(); i++) {
             System.out.println(
-                "\t" +
-                this.finishedProcess.get(i).getPID() + "\t" +
+                this.finishedProcess.get(i).getPID() + "\t\t" +
                 this.tpClass + "\t\t" +
-                (((this.finishedProcess.get(i).getDepartureTime()-this.finishedProcess.get(i).getArrivalTime())-this.finishedProcess.get(i).getInitialCpuBurst())+1) + "\t\t\t" +
+                (((this.finishedProcess.get(i).getDepartureTime()-this.finishedProcess.get(i).getArrivalTime())-this.finishedProcess.get(i).getInitialCpuBurst())+1) + "\t\t" +
                 ((this.finishedProcess.get(i).getDepartureTime()-this.finishedProcess.get(i).getArrivalTime())+1)
             );
         }
