@@ -194,19 +194,20 @@ public class Scheduler {
             classP = new Class(); // clear
         } // end of data input
 
-        System.out.println("false && false :" + (false && false));
+//        System.out.println("false && false :" + (false && false));
 
         // execution
         System.out.println("\n-------------EXEC----------------");
 
         // structure that will run the schedule algorithms stored in mqs
-        while(true) {
+//        while(true) {
+        while (time <= 100) {
 
-            for (int i = 0; i < qtClass; i++) { // boolean logic tha checks for new process in mqs
-                exec = mqs.get(i).hasNew() && exec;
-            }
+//            for (int i = 0; i < qtClass; i++) { // boolean logic tha checks for new process in mqs
+//                exec = mqs.get(i).hasNew() && exec;
+//            }
 
-            if (exec) { // has new process :: execute
+//            if (exec) { // has new process :: execute
                 System.out.println("time = " + time);
                 can = true;
 
@@ -218,10 +219,10 @@ public class Scheduler {
 
                 time++;
                 System.out.println(". . . . . . . . . .");
-            } else {
-                break; // exits from infinite loop
-            }
-            exec = true;
+//            } else {
+//                break; // exits from infinite loop
+//            }
+//            exec = true;
         }
 
         // print the final information
