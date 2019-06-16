@@ -2,11 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4a2d037-5423-4887-961e-c886aa24c01e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ShortTermScheduler/scheduler/Class.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ShortTermScheduler/scheduler/Class.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_structure/Queue.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scheduler/Class.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scheduler/Class.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scheduler/Process.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scheduler/Process.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scheduler/Scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scheduler/Scheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scheduler_algorithms/FirstComeFirstServed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scheduler_algorithms/PriorityScheduling.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scheduler_algorithms/PriorityWithPreemptionScheduling.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scheduler_algorithms/RoundRobin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scheduler_algorithms/ShortedJobFirst.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scheduler_algorithms/ShortedRemainingTimeFirst.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/txt/input-FCFS-1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/txt/output-FCFS-1.txt" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/scheduler/Scheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="228" column="55" selection-start-line="228" selection-start-column="55" selection-end-line="228" selection-end-column="55" />
+            <state relative-caret-position="245">
+              <caret line="196" column="66" lean-forward="true" selection-start-line="196" selection-start-column="66" selection-end-line="196" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -38,11 +48,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/scheduler/Class.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="468" column="111" selection-start-line="468" selection-start-column="111" selection-end-line="468" selection-end-column="111" />
+            <state relative-caret-position="686">
+              <caret line="479" column="36" selection-start-line="479" selection-start-column="36" selection-end-line="479" selection-end-column="36" />
               <folding>
                 <element signature="method#execute#0;class#Class#0" />
+                <element signature="method#addReadyProcessFCFS#0;class#Class#0" />
+                <element signature="method#executeFCFS#0;class#Class#0" />
+                <element signature="method#addReadyProcessSJF#0;class#Class#0" />
+                <element signature="method#executeSJF#0;class#Class#0" />
+                <element signature="method#addReadyProcessSRTF#0;class#Class#0" />
+                <element signature="method#executeSRTF#0;class#Class#0" />
+                <element signature="method#addReadyProcessPS#0;class#Class#0" />
+                <element signature="method#executePS#0;class#Class#0" />
+                <element signature="method#addReadyProcessPWPS#0;class#Class#0" />
+                <element signature="method#executePWPS#0;class#Class#0" />
+                <element signature="method#addReadyProcessRR#0;class#Class#0" />
                 <element signature="method#executeRR#0;class#Class#0" />
+                <element signature="method#printFinished#0;class#Class#0" />
               </folding>
             </state>
           </provider>
@@ -51,17 +73,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/input.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+            <state relative-caret-position="63">
+              <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/output.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="379" column="28" lean-forward="true" selection-start-line="379" selection-start-column="28" selection-end-line="379" selection-end-column="28" />
+            <state relative-caret-position="104">
+              <caret line="40" selection-start-line="40" selection-end-line="40" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -69,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="16" column="37" selection-start-line="16" selection-end-line="17" />
+            <state relative-caret-position="504">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -88,6 +110,7 @@
     <findStrings>
       <find>fila</find>
       <find>new</find>
+      <find>-</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -110,11 +133,12 @@
         <option value="$PROJECT_DIR$/src/scheduler_algorithms/FirstComeFirstServed.java" />
         <option value="$PROJECT_DIR$/src/scheduler_algorithms/ShortedJobFirst.java" />
         <option value="$PROJECT_DIR$/src/scheduler_algorithms/PriorityWithPreemptionScheduling.java" />
-        <option value="$PROJECT_DIR$/output.txt" />
         <option value="$PROJECT_DIR$/src/scheduler/Process.java" />
-        <option value="$PROJECT_DIR$/src/scheduler/Scheduler.java" />
+        <option value="$PROJECT_DIR$/output.txt" />
         <option value="$PROJECT_DIR$/input.txt" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/scheduler/Class.java" />
+        <option value="$PROJECT_DIR$/src/scheduler/Scheduler.java" />
       </list>
     </option>
   </component>
@@ -127,8 +151,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,18 +167,14 @@
               <item name="ShortTermScheduler" type="b2602c69:ProjectViewProjectNode" />
               <item name="ShortTermScheduler" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="data_structure" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ShortTermScheduler" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ShortTermScheduler" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="scheduler" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -251,7 +269,7 @@
     <frame x="0" y="0" width="1920" height="1045" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985591" visible="true" weight="0.14209402" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985591" visible="true" weight="0.14369658" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -260,7 +278,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.50144094" side_tool="true" weight="0.14209402" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23736264" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23736264" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3989011" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -302,23 +320,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data_structure/Queue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Queue#0;class#Queue#0" />
-            <element signature="e#221#222#0" expanded="true" />
-            <element signature="e#254#255#0" expanded="true" />
-            <element signature="e#285#286#0" expanded="true" />
-            <element signature="e#328#329#0" expanded="true" />
-            <element signature="e#362#363#0" expanded="true" />
-            <element signature="e#407#408#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/txt/output-FCFS-1.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -329,20 +330,7 @@
     <entry file="file://$PROJECT_DIR$/txt/input-FCFS-1.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scheduler_algorithms/MultilevelQueueScheduling.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#431#432#0" expanded="true" />
-            <element signature="e#480#481#0" expanded="true" />
-            <element signature="e#513#514#0" expanded="true" />
-            <element signature="e#567#568#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scheduler_algorithms/MultilevelQueueScheduling.java" />
     <entry file="file://$PROJECT_DIR$/src/scheduler_algorithms/ShortedJobFirst.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -383,9 +371,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/data_structure/Queue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Queue#0;class#Queue#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/scheduler_algorithms/FirstComeFirstServed.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="-910">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -394,56 +393,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scheduler/Process.java">
+    <entry file="file://$PROJECT_DIR$/src/.scheduler_algorithms/FirstComeFirstServed.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="77" column="19" lean-forward="true" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
-          <folding>
-            <element signature="e#286#287#0" expanded="true" />
-            <element signature="e#373#374#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scheduler/Scheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="228" column="55" selection-start-line="228" selection-start-column="55" selection-end-line="228" selection-end-column="55" />
+        <state relative-caret-position="105">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/ShortTermScheduler.iml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scheduler/Class.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="468" column="111" selection-start-line="468" selection-start-column="111" selection-end-line="468" selection-end-column="111" />
-          <folding>
-            <element signature="method#execute#0;class#Class#0" />
-            <element signature="method#executeRR#0;class#Class#0" />
-          </folding>
+        <state relative-caret-position="21">
+          <caret line="1" column="6" lean-forward="true" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="37" selection-start-line="16" selection-end-line="17" />
+        <state relative-caret-position="504">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/output.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="379" column="28" lean-forward="true" selection-start-line="379" selection-start-column="28" selection-end-line="379" selection-end-column="28" />
+        <state relative-caret-position="104">
+          <caret line="40" selection-start-line="40" selection-end-line="40" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scheduler/Process.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="77" column="19" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scheduler/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="479" column="36" selection-start-line="479" selection-start-column="36" selection-end-line="479" selection-end-column="36" />
+          <folding>
+            <element signature="method#execute#0;class#Class#0" />
+            <element signature="method#addReadyProcessFCFS#0;class#Class#0" />
+            <element signature="method#executeFCFS#0;class#Class#0" />
+            <element signature="method#addReadyProcessSJF#0;class#Class#0" />
+            <element signature="method#executeSJF#0;class#Class#0" />
+            <element signature="method#addReadyProcessSRTF#0;class#Class#0" />
+            <element signature="method#executeSRTF#0;class#Class#0" />
+            <element signature="method#addReadyProcessPS#0;class#Class#0" />
+            <element signature="method#executePS#0;class#Class#0" />
+            <element signature="method#addReadyProcessPWPS#0;class#Class#0" />
+            <element signature="method#executePWPS#0;class#Class#0" />
+            <element signature="method#addReadyProcessRR#0;class#Class#0" />
+            <element signature="method#executeRR#0;class#Class#0" />
+            <element signature="method#printFinished#0;class#Class#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scheduler/Scheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="196" column="66" lean-forward="true" selection-start-line="196" selection-start-column="66" selection-end-line="196" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

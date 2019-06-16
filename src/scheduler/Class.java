@@ -10,21 +10,16 @@ public class Class {
     private String tpClass;
 
     // constructor
-    public Class() {
-    }
+    public Class() { }
 
     // class type setter
-    public void setTpClass(String tpClass) {
-        this.tpClass = tpClass;
-    }
+    public void setTpClass(String tpClass) { this.tpClass = tpClass; }
 
     // add a new process at the queue
-    public void addNewProcess(Process newP) {
-        this.newProcess.addLast(newP);
-    }
+    public void addNewProcess(Process newP) { this.newProcess.addLast(newP); }
 
-    public Boolean execute(int time, Boolean can) {
-        Boolean ret = false;
+    public boolean execute(int time, boolean can) {
+        boolean ret = false;
         switch (this.tpClass) {
             case "FCFS":
                 ret = executeFCFS(time, can);
@@ -48,6 +43,7 @@ public class Class {
         return ret;
     }
 
+    // methods of execution of the algorithms
     private int addReadyProcessFCFS(Process p) {
         if (!this.readyProcess.isEmpty()) { // readyProcess not empty
             for (int i = 0; i < this.readyProcess.size(); i++) {
@@ -81,8 +77,8 @@ public class Class {
         return 1;
     }
 
-    private Boolean executeFCFS(int time, Boolean can) {
-        Boolean ret = false;
+    private boolean executeFCFS(int time, boolean can) {
+        boolean ret = false;
 
         // have new process
         if (!this.newProcess.isEmpty()) {
@@ -153,8 +149,8 @@ public class Class {
         return 1;
     }
 
-    public Boolean executeSJF(int time, Boolean can) {
-        Boolean ret = false;
+    private boolean executeSJF(int time, boolean can) {
+        boolean ret = false;
 
         // have new process
         if (!this.newProcess.isEmpty()) {
@@ -192,7 +188,7 @@ public class Class {
         return ret;
     }
 
-    public int addReadyProcessSRTF(Process p){
+    private int addReadyProcessSRTF(Process p){
         if(this.readyProcess.isEmpty()){ //Fila de prontos vazia
             this.readyProcess.add(p); return 0;//adiciona o processo na fila de prontos
         }
@@ -216,8 +212,8 @@ public class Class {
         }
     }
 
-    public Boolean executeSRTF(int time, Boolean can){
-        Boolean ret = false;
+    private boolean executeSRTF(int time, boolean can){
+        boolean ret = false;
         if(!this.newProcess.isEmpty()){//novo processo
             for (int i = 0; i < this.newProcess.size();) {
                 if (time == this.newProcess.get(i).getArrivalTime()) {
@@ -277,8 +273,8 @@ public class Class {
         this.readyProcess.addLast(p);return 0;
     }
 
-    public Boolean executePS(int time, Boolean can) {
-        Boolean ret = false;
+    private boolean executePS(int time, boolean can) {
+        boolean ret = false;
 
         // have new process
         if (!this.newProcess.isEmpty()) {
@@ -349,8 +345,8 @@ public class Class {
         return 1;
     }
 
-    public Boolean executePWPS(int time, Boolean can) {
-        Boolean ret = false;
+    private boolean executePWPS(int time, boolean can) {
+        boolean ret = false;
 
         // have new process
         if (!this.newProcess.isEmpty()) {
@@ -417,8 +413,8 @@ public class Class {
         }
     }
 
-    public Boolean executeRR(int time, Boolean can) {
-        Boolean ret = false;
+    private boolean executeRR(int time, boolean can) {
+        boolean ret = false;
 
         // have new process
         if (!this.newProcess.isEmpty()) {
@@ -436,28 +432,36 @@ public class Class {
             }
         }
         // have ready process
-        if (!this.readyProcess.isEmpty() && can) {
-            if (this.readyProcess.getFirst().getArrivalTime() <= time) {
-                Process exec = this.readyProcess.removeFirst();
-                System.out.println("PID: " + exec.getPID() + " RR");
-                System.out.println("initialBurst: " + exec.getInitialCpuBurst());
-                exec.setRemainingCpuBurst(exec.getRemainingCpuBurst() - 1);
-                System.out.println("remainingBurst: " + exec.getRemainingCpuBurst());
-                System.out.println("arriveTime: " + exec.getArrivalTime());
-                exec.setRemainingQuantum(exec.getRemainingQuantum() - 1); //setando o Quantum
-                System.out.println("remainingQuantum: " + exec.getRemainingQuantum());
+        if (!this.readyProcess.isEmpty()  &&  can  &&  this.readyProcess.getFirst().getArrivalTime() <= time) {
+//            if (this.readyProcess.getFirst().getArrivalTime() <= time) {
+            Process exec = this.readyProcess.removeFirst();
+            System.out.println("PID: " + exec.getPID() + " RR");
+            System.out.println("initialBurst: " + exec.getInitialCpuBurst());
+            exec.setRemainingCpuBurst(exec.getRemainingCpuBurst() - 1);
+            System.out.println("remainingBurst: " + exec.getRemainingCpuBurst());
+            System.out.println("arriveTime: " + exec.getArrivalTime());
+            exec.setRemainingQuantum(exec.getRemainingQuantum() - 1);
+            System.out.println("remainingQuantum: " + exec.getRemainingQuantum());
+
+            // already finished a process
+            // maybe this validation should be implemented in the other algorithms
+            if (exec.getRemainingCpuBurst() < 1) {
+                this.finishedProcess.add(exec);
+            } else {
                 addReadyProcessRR(exec);
-                ret = true;
             }
+
+            ret = true;
+//            }
         }
         // already finished some process
-        if (!this.readyProcess.isEmpty()) {
-            if (this.readyProcess.getFirst().getRemainingCpuBurst() < 1) {
-                Process newP = this.readyProcess.removeFirst();
-                newP.setDepartureTime(time);
-                this.finishedProcess.addLast(newP);
-            }
-        }
+//        if (!this.readyProcess.isEmpty()) {
+//            if (this.readyProcess.getFirst().getRemainingCpuBurst() < 1) {
+//                Process newP = this.readyProcess.removeFirst();
+//                newP.setDepartureTime(time);
+//                this.finishedProcess.addLast(newP);
+//            }
+//        }
         return ret;
     }
 
@@ -470,5 +474,8 @@ public class Class {
                 (this.finishedProcess.get(i).getDepartureTime()-this.finishedProcess.get(i).getArrivalTime())
             );
         }
+        System.out.println("------------------------------------");
     }
+
+    public boolean hasNew() { return !this.newProcess.isEmpty(); }
 }
