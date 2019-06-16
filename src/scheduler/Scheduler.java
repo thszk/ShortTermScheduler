@@ -30,8 +30,8 @@ public class Scheduler {
         LinkedList<Class> mqs = new LinkedList<>(); // mqs :: multilevel queue scheduling, stores all the process classes
 
         // from execution
-        int time = 0;
-        boolean can, exec = true;
+        int time = 0, sumReady = 1, sumNew = 0;
+        boolean can;
 
         // data input
 //        System.out.print("qtClass: \n");
@@ -194,20 +194,17 @@ public class Scheduler {
             classP = new Class(); // clear
         } // end of data input
 
-//        System.out.println("false && false :" + (false && false));
-
         // execution
         System.out.println("\n-------------EXEC----------------");
 
         // structure that will run the schedule algorithms stored in mqs
-//        while(true) {
-        while (time <= 100) {
+        while(true) {
+            for (int i = 0; i < qtClass; i++) { // adds the number of processes in the queues
+                sumReady += mqs.get(i).sizeReady();
+                sumNew += mqs.get(i).sizeNew();
+            }
 
-//            for (int i = 0; i < qtClass; i++) { // boolean logic tha checks for new process in mqs
-//                exec = mqs.get(i).hasNew() && exec;
-//            }
-
-//            if (exec) { // has new process :: execute
+            if (sumReady > 0 || sumNew > 0) { // exists ready process or new process :: execute
                 System.out.println("time = " + time);
                 can = true;
 
@@ -219,10 +216,10 @@ public class Scheduler {
 
                 time++;
                 System.out.println(". . . . . . . . . .");
-//            } else {
-//                break; // exits from infinite loop
-//            }
-//            exec = true;
+            } else {
+                break; // exits from infinite loop
+            }
+            sumReady = 0; sumNew = 0;
         }
 
         // print the final information

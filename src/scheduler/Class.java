@@ -189,62 +189,62 @@ public class Class {
     }
 
     private int addReadyProcessSRTF(Process p){
-        if(this.readyProcess.isEmpty()){ //Fila de prontos vazia
-            this.readyProcess.add(p); return 0;//adiciona o processo na fila de prontos
-        }
-        else{
-            for(int i = 0;i < this.readyProcess.size();i++){
-                if(p.getRemainingCpuBurst() < this.readyProcess.get(i).getRemainingCpuBurst()){//tempo de CPU-Burst do novo processo é menor que o processo atual
+        if (!this.readyProcess.isEmpty()) {
+            for (int i = 0; i < this.readyProcess.size(); i++) {
+                if (p.getRemainingCpuBurst() < this.readyProcess.get(i).getRemainingCpuBurst()) {
                     this.readyProcess.add(i,p); return 0;
-                }
-                else if(p.getRemainingCpuBurst() == this.readyProcess.get(i).getRemainingCpuBurst()){//tempo de CPU-Burst do novo processo é igual ao processo atual
-                    if (p.getArrivalTime() < this.readyProcess.get(i).getArrivalTime()){//tempo de chegada do novo processo é menor que o processo atual
+                } else if (p.getRemainingCpuBurst() == this.readyProcess.get(i).getRemainingCpuBurst()) {
+                    if (p.getArrivalTime() < this.readyProcess.get(i).getArrivalTime()) {
                         this.readyProcess.add(i,p); return 0;
-                    }
-                    else if(p.getArrivalTime() == this.readyProcess.get(i).getArrivalTime()){//tempo de chegada do novo processo é igual ao processo atual
-                        if(p.getPID() < this.readyProcess.get(i).getPID()){//PID do novo processo é menor que o processo atual
+                    } else if (p.getArrivalTime() == this.readyProcess.get(i).getArrivalTime()) {
+                        if (p.getPID() < this.readyProcess.get(i).getPID()) {
                             this.readyProcess.add(i,p); return 0;
                         }
                     }
                 }
             }
-            this.readyProcess.addLast(p); return 0;//adiciona no final da fila
+            this.readyProcess.addLast(p); return 0;
+        } else {
+            this.readyProcess.add(p); return 0;
         }
     }
 
     private boolean executeSRTF(int time, boolean can){
         boolean ret = false;
-        if(!this.newProcess.isEmpty()){//novo processo
+
+        // have new process
+        if (!this.newProcess.isEmpty()) {
+            // check arrival time
             for (int i = 0; i < this.newProcess.size();) {
                 if (time == this.newProcess.get(i).getArrivalTime()) {
-                    Process newP = this.newProcess.remove(i);//remove da fila de novos
-                    addReadyProcessSRTF(newP);//adiciona na fila de prontos
+                    // remove from new's queue
+                    Process newP = this.newProcess.remove(i);
+                    // insert on ready's queue
+                    addReadyProcessSRTF(newP);
                 }else {
                     i++;
                 }
             }
         }
+        // have ready process
+        if(!this.readyProcess.isEmpty()  &&  can  &&  this.readyProcess.getFirst().getArrivalTime() <= time) {
+            Process exec = this.readyProcess.removeFirst();
+            System.out.println("PID: " + exec.getPID() + " SRTF");
+            System.out.println("CPU-Burst inicial: " + exec.getInitialCpuBurst());
+            exec.setRemainingCpuBurst(exec.getRemainingCpuBurst() - 1);
+            System.out.println("CPU-Burst restante: " + exec.getRemainingCpuBurst());
+            System.out.println("Tempo de chegada: " + exec.getArrivalTime());
 
-        if(!this.readyProcess.isEmpty()){//tendo processo pronto na fila
-            if(this.readyProcess.getFirst().getArrivalTime() <= time){
-                Process exec = this.readyProcess.removeFirst();//retira o processo da fila de prontos
-                System.out.println("PID: " + exec.getPID() + " SRTF");
-                System.out.println("CPU-Burst inicial: " + exec.getInitialCpuBurst());
-                exec.setRemainingCpuBurst(exec.getRemainingCpuBurst() - 1);
-                System.out.println("CPU-Burst restante: " + exec.getRemainingCpuBurst());
-                System.out.println("Tempo de chegada: " + exec.getArrivalTime());
-                addReadyProcessSRTF(exec);//insere o processo na fila de prontos com o novo CPU_burst
-                ret = true;
+            // already finished a process
+            if (exec.getRemainingCpuBurst() == 0) {
+                exec.setDepartureTime(time);
+                this.finishedProcess.addLast(exec);
+            } else {
+                addReadyProcessSRTF(exec);
             }
+            ret = true;
         }
 
-        if(!this.readyProcess.isEmpty()){
-            if(this.readyProcess.getFirst().getRemainingCpuBurst() == 0){
-                Process newP = this.readyProcess.removeFirst();
-                newP.setDepartureTime(time);
-                this.finishedProcess.addLast(newP);
-            }
-        }
         return ret;
     }
 
@@ -371,16 +371,15 @@ public class Class {
                 exec.setRemainingCpuBurst(exec.getRemainingCpuBurst() - 1);
                 System.out.println("remainingBurst: " + exec.getRemainingCpuBurst());
                 System.out.println("arriveTime: " + exec.getArrivalTime());
-                addReadyProcessPWPS(exec);
+
+                // already finished some process
+                if (exec.getRemainingCpuBurst() == 0) {
+                    exec.setDepartureTime(time);
+                    this.finishedProcess.addLast(exec);
+                } else {
+                    addReadyProcessPWPS(exec);
+                }
                 ret = true;
-            }
-        }
-        // already finished some process
-        if (!this.readyProcess.isEmpty()) {
-            if (this.readyProcess.getFirst().getRemainingCpuBurst() == 0) {
-                Process newP = this.readyProcess.removeFirst();
-                newP.setDepartureTime(time);
-                this.finishedProcess.addLast(newP);
             }
         }
         return ret;
@@ -433,7 +432,6 @@ public class Class {
         }
         // have ready process
         if (!this.readyProcess.isEmpty()  &&  can  &&  this.readyProcess.getFirst().getArrivalTime() <= time) {
-//            if (this.readyProcess.getFirst().getArrivalTime() <= time) {
             Process exec = this.readyProcess.removeFirst();
             System.out.println("PID: " + exec.getPID() + " RR");
             System.out.println("initialBurst: " + exec.getInitialCpuBurst());
@@ -446,36 +444,30 @@ public class Class {
             // already finished a process
             // maybe this validation should be implemented in the other algorithms
             if (exec.getRemainingCpuBurst() < 1) {
+                exec.setDepartureTime(time);
                 this.finishedProcess.add(exec);
             } else {
                 addReadyProcessRR(exec);
             }
-
             ret = true;
-//            }
         }
-        // already finished some process
-//        if (!this.readyProcess.isEmpty()) {
-//            if (this.readyProcess.getFirst().getRemainingCpuBurst() < 1) {
-//                Process newP = this.readyProcess.removeFirst();
-//                newP.setDepartureTime(time);
-//                this.finishedProcess.addLast(newP);
-//            }
-//        }
         return ret;
     }
 
+    // prints the finished queue
     public void printFinished() {
         for (int i = 0; i < this.finishedProcess.size(); i++) {
             System.out.println(
                 this.finishedProcess.get(i).getPID() + "\t\t" +
                 this.tpClass + "\t\t" +
-                ((this.finishedProcess.get(i).getDepartureTime()+this.finishedProcess.get(i).getArrivalTime())-this.finishedProcess.get(i).getInitialCpuBurst()) + "\t\t\t" +
-                (this.finishedProcess.get(i).getDepartureTime()-this.finishedProcess.get(i).getArrivalTime())
+                (((this.finishedProcess.get(i).getDepartureTime()-this.finishedProcess.get(i).getArrivalTime())-this.finishedProcess.get(i).getInitialCpuBurst())+1) + "\t\t\t" +
+                ((this.finishedProcess.get(i).getDepartureTime()-this.finishedProcess.get(i).getArrivalTime())+1)
             );
         }
         System.out.println("------------------------------------");
     }
 
-    public boolean hasNew() { return !this.newProcess.isEmpty(); }
+    public int sizeReady() { return this.readyProcess.size(); }
+
+    public int sizeNew() { return this.newProcess.size(); }
 }
