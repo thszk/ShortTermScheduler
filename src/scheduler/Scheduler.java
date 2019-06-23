@@ -12,8 +12,8 @@ public class Scheduler {
 
         // sets the default I/O to the text file
         try {
-            System.setIn(new FileInputStream(new File("/home/xogaiht/Code/ShortTermScheduler/input.txt")));
-            System.setOut(new PrintStream(new FileOutputStream("/home/xogaiht/Code/ShortTermScheduler/output.txt", false)));
+            System.setIn(new FileInputStream(new File(System.getProperty("user.dir")+"/input.txt")));
+            System.setOut(new PrintStream(new FileOutputStream(System.getProperty("user.dir")+"/output.txt", false)));
         } catch (Exception e) {
             System.out.println(e);
         }
